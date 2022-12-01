@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import logo from "./logo.svg";
 import "./ListEmployee.css";
 import { ThemeContext } from "./About";
+import EmployeeCard from "./components/EmployeeCard";
 
 export default function Counter() {
   // const [text, setText] = React.useState("");
@@ -12,15 +13,15 @@ export default function Counter() {
   const employees = [
     {
       id: 1,
-      name: "a",
+      name: "ahmad",
       job: "tukang a",
-      photo: "image",
+      photo: "image a",
       join_date: "12-12-12",
       email: "a@gmail.com",
     },
     {
       id: 2,
-      name: "b",
+      name: "bustomi",
       job: "tukang b",
       photo: "image b",
       join_date: "13-12-12",
@@ -28,7 +29,7 @@ export default function Counter() {
     },
     {
       id: 3,
-      name: "c",
+      name: "chloe",
       job: "tukang c",
       photo: "image c",
       join_date: "17-12-12",
@@ -36,11 +37,27 @@ export default function Counter() {
     },
     {
       id: 4,
-      name: "d",
+      name: "dukun",
       job: "tukang d",
       photo: "image d",
       join_date: "20-12-12",
       email: "d@gmail.com",
+    },
+    {
+      id: 5,
+      name: "ee",
+      job: "tukang e",
+      photo: "image e",
+      join_date: "20-12-12",
+      email: "e@gmail.com",
+    },
+    {
+      id: 6,
+      name: "filip",
+      job: "tukang f",
+      photo: "image f",
+      join_date: "20-12-12",
+      email: "f@gmail.com",
     },
   ];
 
@@ -68,15 +85,18 @@ export default function Counter() {
       style={{ background: theme.background, color: theme.foreground }}
     >
       <p className="Text">PT Something Employee List</p>
-
-      {/* {data.map((value) => (
-          <li key={value.id}>{value.name}</li>
-        ))} */}
-      {employees.map((employee) => (
-        <div key={employee.id}>
-          Name: {employee.name} Job: {employee.job}
-        </div>
-      ))}
+      <div className="container">
+        {employees.map((employee) => (
+          <EmployeeCard
+            id={employee.id}
+            name={employee.name}
+            job={employee.job}
+            photo={employee.photo}
+            join_date={employee.join_date}
+            email={employee.email}
+          />
+        ))}
+      </div>
     </div>
   );
 }
