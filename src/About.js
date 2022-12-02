@@ -13,24 +13,20 @@ export const themes = {
     background: '#222222',
   },
 };
-export const ThemeContext = React.createContext(themes.light);
 export default function Index() {
-  const { theme } = useContext(ThemeContext);
   return (
-    <div className="Main" style={{ background: theme.background, color: theme.foreground }}>
+    <div className="Main">
       <p>KELOMPOK21</p>
       <p>Anadda Ferrell Ramadhan - 21120119130035</p>
       <p>M. Farhan Athaullah - 21120119130072</p>
       <p>Muhammad Alifa Ramdhan - 21120119130092</p>
       <p>Rama Pradana Putra - 21120119140125</p>
-      <ThemedButton />
     </div>
   );
 }
 function ThemedButton() {
-  const { theme, changeTheme } = useContext(ThemeContext);
   return (
-    <button className="Button" style={{ background: theme.background, color: theme.foreground }} onClick={changeTheme}>
+    <button className="Button">
       i am styled by theme context!
     </button>
   );

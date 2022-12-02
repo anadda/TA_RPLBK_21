@@ -1,14 +1,3 @@
-.Main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .quote {
   width: 100%;
   max-width: 400px;
@@ -38,4 +27,36 @@ button {
 
 .btn:hover {
   background: #00658c;
+}
+
+.card-detail {
+  padding: 30px;
+  border: solid 1px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  margin: 10px;
+  background-color: rgb(165, 167, 168);
+  border-radius: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20%;
+}
+.card:hover {
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
+}
+
+.card-desc {
+  margin-left: 20px;
+  font-size: 20pt;
+}
+
+.card-desc p {
+  margin:0px;
+  font-size: 12pt;
+}
+.card-desc .name {
+  margin:0px;
+  font-weight: bold;
+  font-size: 16pt;
 }
