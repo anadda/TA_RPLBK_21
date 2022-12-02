@@ -108,16 +108,16 @@ function NewHook(props) {
         </div>
       </div>
       <div className="data-input">
-        <Input id={1} label="Name" locked={false} active={false} />
-        <Input id={1} label="Position" locked={false} active={false} />
+        <Input name="nama" label="Name" locked={false} active={false} />
+        <Input name="position" label="Position" locked={false} active={false} />
         <Input
-          id={1}
+        name="joinDate"
           label="Join Date"
           locked={false}
           active={false}
           type="date"
         />
-        <Input id={1} label="Email" locked={false} active={false} />
+        <Input name="email" label="Email" locked={false} active={false} />
       </div>
       <Button type="button" value="Submit" />
     </div>

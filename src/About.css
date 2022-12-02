@@ -16,3 +16,15 @@
 .Text {
   font-size: 50px;
 }
+
+.author {
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 0.5em;
+  list-style-type: none;
+}
+
+.author > *:last-child {
+  color: #666;
+}

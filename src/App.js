@@ -5,31 +5,16 @@ import Counter from "./ListEmployee";
 import Effect from "./EmployeeMonth";
 import Context from "./About";
 import NewHook from "./Name";
+import NavBarItem from './components/NavBarItem';
 
 function App() {
   return (
     <Router>
       <div className="App-header">
         <nav className="NavBar">
-          <ul className="ul">
-            <li className="li">
-              <Link className="text-link" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="li">
-              <Link className="text-link" to="/ref">
-                {" "}
-                Create Employee
-              </Link>
-            </li>
-            <li className="li">
-              <Link className="text-link" to="/context">
-                {" "}
-                About
-              </Link>
-            </li>
-          </ul>
+          <NavBarItem text="Home" url="/" />
+          <NavBarItem text="Create Employee" url="/ref" />
+          <NavBarItem text="About" url="/context" />
         </nav>
         <Routes>
           <Route path="/" exact element={<Counter />} />
