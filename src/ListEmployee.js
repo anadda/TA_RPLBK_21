@@ -78,4 +78,23 @@ export default function Counter() {
     getEmployees();
   }, []);
 
-
+  return (
+    <div
+      className="Main"
+    >
+      <p className="Text">PT Something Employee List</p>
+      <div className="container">
+        {employees.map((employee) => (
+          <EmployeeCard
+            id={employee.id}
+            name={employee.name}
+            job={employee.job}
+            photo={employee.photo}
+            join_date={employee.join_date}
+            email={employee.email}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
