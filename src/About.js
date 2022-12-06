@@ -25,7 +25,7 @@ export default function Index() {
       <h1>Authors</h1>
       <ul>
         {authors.map(author => (
-          <li key={author.email} className="author">
+          <li key={author.nim} className="author">
             <strong>{author.name}</strong>
             <br />
             {author.nim}
