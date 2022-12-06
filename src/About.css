@@ -23,6 +23,7 @@
   line-height: 1.25;
   margin-bottom: 0.5em;
   list-style-type: none;
+  text-align: center;
 }
 
 .author > *:last-child {
