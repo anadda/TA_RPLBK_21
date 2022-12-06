@@ -26,12 +26,17 @@
   font-size: 26px;
 }
 .avatar {
-  width: 140px;
   margin: auto;
+  text-align: center;
 }
 .avatar img {
   border: solid 6px transparent;
   border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  margin: auto;
+  display: block;
 }
 .card:hover .avatar img {
   border-color: rgb(99, 204, 131);

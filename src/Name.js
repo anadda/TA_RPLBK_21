@@ -1,16 +1,17 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Input from "./components/TextInput";
 import Button from "./components/Button";
-import './Name.css'
+import "./Name.css";
 
-function NewHook(props) {
-  const [state, setState] = React.useState({
-    nama: "",
-    nim: "",
-    kelompok: "",
-  });
+const URL_POST = "http://103.139.192.200:4000/api/employees";
+export default function NewHook(props) {
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
+  const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+  const [joinDate, setJoinDate] = useState("");
+  const [email, setEmail] = useState("");
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
@@ -25,6 +26,50 @@ function NewHook(props) {
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
+
+  // handle changes to the input fields
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    console.log(name + " : " + value);
+    if (name === "name") {
+      setName(value);
+    } else if (name === "position") {
+      setPosition(value);
+    } else if (name === "joinDate") {
+      setJoinDate(value);
+    } else if (name === "email") {
+      setEmail(value);
+    }
+  };
+
+  // create a side effect to make the request to the API
+  // when the form data is available
+  const handleSubmit = (e) => {
+    console.log("Clicked");
+    e.preventDefault();
+    if (name && position && joinDate && email && selectedFile) {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("name", name);
+      formData.append("posisi", position);
+      formData.append("tanggalMasuk", joinDate);
+      formData.append("email", email);
+
+      axios
+        .post(URL_POST, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          alert("Data was successfully sent to the API");
+        })
+        .catch((error) => {
+          alert("An error occurred while sending data to the API");
+        });
+    }
+  };
+
   // Create a reference to the hidden file input element
   const hiddenFileInput = React.useRef(null);
 
@@ -47,31 +92,6 @@ function NewHook(props) {
     //props.handleFile(fileUploaded);
   };
 
-  const namaRef = React.useRef();
-  const nimRef = React.useRef();
-  const kelompokRef = React.useRef();
-
-  function handleCheck() {
-    if (state.nama === "") {
-      alert("Nama harus diisi");
-      namaRef.current.focus();
-    } else if (state.nim === "") {
-      alert("Nim harus diisi");
-      nimRef.current.focus();
-    } else if (state.kelompok === "") {
-      alert("Kelompok harus diisi");
-      kelompokRef.current.focus();
-    } else {
-      setState({
-        ...state,
-        ["nama"]: "",
-        ["nim"]: "",
-        ["kelompok"]: "",
-      });
-      alert("Semua Telah Terisi!");
-    }
-  }
-
   return (
     <div
       style={{
@@ -83,45 +103,67 @@ function NewHook(props) {
         paddingTop: "40px",
       }}
     >
-      <div className="avatar-input">
-        <div className="avatar">
-          {
-            selectedFile &&
-            <img
-              src={preview}
-              alt="avatar"
-              className="avatar"
-            />
-          }
+      <form onSubmit={handleSubmit}>
+        <div className="avatar-input">
+          <div className="avatar">
+            {selectedFile && (
+              <img src={preview} alt="avatar" className="avatar" />
+            )}
+          </div>
+          <div>
+            <label htmlFor="photo">
+              <Button
+                value="Upload photo"
+                type="button"
+                onClick={handleClick}
+              />
+              <input
+                type="file"
+                id="photo"
+                onChange={handleChange}
+                ref={hiddenFileInput}
+                style={{ display: "none" }}
+              />
+            </label>
+          </div>
         </div>
-        <div>
-          <label htmlFor="photo">
-            <Button value="Upload photo" type="button" onClick={handleClick} />
-            <input
-              type="file"
-              id="photo"
-              onChange={handleChange}
-              ref={hiddenFileInput}
-              style={{ display: "none" }}
-            />
-          </label>
+        <div className="data-input">
+          <Input
+            name="name"
+            label="Name"
+            locked={false}
+            active={false}
+            onChange={handleInputChange}
+            value={name}
+          />
+          <Input
+            name="position"
+            label="Position"
+            locked={false}
+            active={false}
+            onChange={handleInputChange}
+            value={position}
+          />
+          <Input
+            type="date"
+            name="joinDate"
+            label="Join Date"
+            locked={false}
+            active={false}
+            onChange={handleInputChange}
+            value={joinDate}
+          />
+          <Input
+            name="email"
+            label="Email"
+            locked={false}
+            active={false}
+            onChange={handleInputChange}
+            value={email}
+          />
+          <Button value="Submit" type="submit" onClick={handleSubmit} />
         </div>
-      </div>
-      <div className="data-input">
-        <Input name="nama" label="Name" locked={false} active={false} />
-        <Input name="position" label="Position" locked={false} active={false} />
-        <Input
-        name="joinDate"
-          label="Join Date"
-          locked={false}
-          active={false}
-          type="date"
-        />
-        <Input name="email" label="Email" locked={false} active={false} />
-      </div>
-      <Button type="button" value="Submit" />
+      </form>
     </div>
   );
 }
-
-export default NewHook;

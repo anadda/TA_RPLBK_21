@@ -60,10 +60,11 @@ export default function Counter() {
     */
   ];
 
-  const API = "";
+  const API = "http://103.139.192.200:4000/"
+  const ENDPOINT = API + "api/employees";
 
   const getEmployees = async () => {
-    await fetch(API)
+    await fetch(ENDPOINT)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -84,13 +85,14 @@ export default function Counter() {
     >
       <p className="Text">PT Something Employee List</p>
       <div className="container">
-        {employees.map((employee) => (
+        {data.map((employee, idx) => (
           <EmployeeCard
-            id={employee.id}
+          key={idx}
+            id={idx}
             name={employee.name}
-            job={employee.job}
-            photo={employee.photo}
-            join_date={employee.join_date}
+            job={employee.posisi}
+            photo={API + employee.photo}
+            join_date={employee.tanggalMasuk}
             email={employee.email}
           />
         ))}

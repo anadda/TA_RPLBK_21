@@ -16,6 +16,7 @@ export default class Input extends React.Component {
   changeValue(event) {
     const value = event.target.value;
     this.setState({ value, error: "" });
+    this.props.onChange && this.props.onChange(event);
   }
 
   handleKeyPress(event) {
@@ -37,7 +38,8 @@ export default class Input extends React.Component {
           predicted &&
           predicted.includes(value) && <p className="predicted">{predicted}</p>}
         <input
-          id={1}
+          id={this.props.id}
+          name={this.props.name}
           type={this.props.type || "text"}
           value={value}
           placeholder={label}
