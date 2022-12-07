@@ -3,7 +3,7 @@ import "./EmployeeCard.css";
 function EmployeeCard(props) {
   return (
     <>
-      <div className="col-md-5 animated fadeIn">
+      <div className="col-md-5 animated fadeIn" onClick={props.handleClick}>
         <div className="card">
           <div className="card-body">
             <div className="avatar">

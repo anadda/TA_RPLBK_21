@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import {useLocation} from 'react-router-dom';
 import './EmployeeMonth.css';
 
 export default function Index() {
+  const location = useLocation();
 
   return (
     <div
@@ -15,12 +17,12 @@ export default function Index() {
     >
       <div className='card-detail'>
         <div className="avatar">
-          <img src="https://randomuser.me/api/portraits/men/90.jpg" alt="avatar" className="card-img-top" />
+          <img src={location.state.photo} alt="avatar" className="card-img-top" />
         </div>
         <div className="card-desc">
-          <p className="name">Muhammad Alifa Ramdhan</p>
-          <p><b>Position: </b> CEO</p>
-          <p><b>Join Date: </b> 2022-11-05</p>
+          <p className="name">{location.state.name}</p>
+          <p><b>Position: </b> {location.state.job}</p>
+          <p><b>Join Date: </b> {location.state.joinDate}</p>
           <p><b>Email: </b> joe@app.dev</p>
         </div>
       </div> 
