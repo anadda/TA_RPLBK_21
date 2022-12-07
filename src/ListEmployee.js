@@ -11,7 +11,7 @@ export default function Counter(props) {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-  const API = "http://103.139.192.200:4000/";
+  const API = "https://employee-apis-rplbk.herokuapp.com/";
   const ENDPOINT = API + "api/employees";
 
   const handleInputChange = (event) => {

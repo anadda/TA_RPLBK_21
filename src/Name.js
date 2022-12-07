@@ -4,7 +4,7 @@ import Input from "./components/TextInput";
 import Button from "./components/Button";
 import "./Name.css";
 
-const URL_POST = "http://103.139.192.200:4000/api/employees";
+const URL_POST = "https://employee-apis-rplbk.herokuapp.com/api/employees";
 export default function NewHook(props) {
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
